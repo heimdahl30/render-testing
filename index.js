@@ -37,7 +37,7 @@ app.get('/info', (request, response) => {
 })
 
 app.get('/api/persons/:id', (request, response) => {
-  const id = request.params.id
+  const id = request.params.id 
   const person = persons.find(person => person.id === id)
 
   if (person) {
@@ -86,8 +86,15 @@ app.post('/api/persons', (request, response) => {
   persons = persons.concat(person)
 
   response.json(persons)
+
+  
 })
 
-const PORT = 3001
-app.listen(PORT)
-console.log(`Server running on port ${PORT}`)
+app.get("/", (request,response) => {
+response.send("Hello World!")
+})
+
+const PORT = process.env.PORT || 3001
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`)
+})
