@@ -8,6 +8,8 @@ app.use(morgan(':method :url :status :res[content-length] - :response-time ms :b
 const cors = require("cors")
 app.use(cors())
 
+app.use(express.static('dist'))
+
 
 morgan.token('body', (req) => {
   if (req.method === "POST"){
