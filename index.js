@@ -5,7 +5,16 @@ app.use(express.json())
 const morgan = require('morgan')
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
 
-morgan.token('body', (req) => JSON.stringify(req.body))
+morgan.token('body', (req) => {
+  if (req.method === "POST"){
+  return JSON.stringify(req.body)
+  }
+
+  else {
+    return ""
+  }
+}
+)
 
 let persons = [
     { 
