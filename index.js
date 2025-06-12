@@ -5,9 +5,6 @@ app.use(express.json())
 const morgan = require('morgan')
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
 
-const cors = require("cors")
-app.use(cors())
-
 app.use(express.static('dist'))
 
 
