@@ -7,6 +7,14 @@ app.use(morgan(':method :url :status :res[content-length] - :response-time ms :b
 
 app.use(express.static('dist'))
 
+    if (process.env.NODE_ENV === 'production') {
+      console.log('Backend is running in production mode');
+      // Your production-specific code here
+    } else {
+      console.log('Backend is running in development mode');
+      // Your development-specific code here
+    }
+
 
 morgan.token('body', (req) => {
   if (req.method === "POST"){
