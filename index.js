@@ -3,9 +3,11 @@ const express = require('express')
 const Person = require('./models/person')
 
 console.log(Person)
-app.use(cors())
+
 const app = express()
 app.use(express.json())
+
+app.use(cors())
 
 app.use(express.static('dist'))
 
