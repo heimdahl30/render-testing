@@ -66,7 +66,7 @@ app.post('/api/persons', (request, response, next) => {
 
   person.save().then(result => {
   console.log("new person added to the database")
-
+  response.status(201).json(result);
 })
 .catch(error => next(error))
 })
@@ -78,9 +78,11 @@ app.put('/api/persons/:id', (request,response, next) => {
   Person.findByIdAndUpdate(id,{number: body.number},{new: true}).then(updatedData => {
     if(updatedData){
       console.log("Update successful")
+      return response.status(201).json(updatedData);
     }
-    else {
+    else if (!updatedData) {
       console.log("Update failed")
+      return response.status(404).end();
     }
   })
   .catch(error => next(error))
